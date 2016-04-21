@@ -8,7 +8,7 @@ import (
 	"github.com/oceanhq/accounts/api"
 )
 
-func buildRoutes() *mux.Router {
+func buildRoutes() http.Handler {
 	r := mux.NewRouter()
 	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Hello, world!")
