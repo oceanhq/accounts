@@ -1,9 +1,10 @@
 package main
 
 import (
-	"os"
 	"fmt"
 	"net/http"
+	"os"
+
 	"github.com/codegangsta/negroni"
 	"github.com/gorilla/mux"
 	"github.com/oceanhq/accounts/api"
@@ -11,7 +12,7 @@ import (
 
 func main() {
 	r := mux.NewRouter()
-	r.HandleFunc("/", func (w http.ResponseWriter, r *http.Request) {
+	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Hello, world!")
 	}).Methods("GET")
 	r.HandleFunc("/accounts", api.AccountGetByUsernameHandler).
@@ -21,11 +22,11 @@ func main() {
 		Methods("GET")
 
 	port := os.Getenv("PORT")
-	if (port == "") {
+	if port == "" {
 		port = "3000"
 	}
 
 	n := negroni.New()
 	n.UseHandler(r)
-	n.Run(":"+port)
+	n.Run(":" + port)
 }
